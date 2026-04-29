@@ -12,7 +12,7 @@
         "ms-azuretools.vscode-docker"
       ],
       "settings": {
-        "r.rterm.linux": "/usr/local/bin/R",
+        "r.rterm.linux": "/usr/local/bin/arf",
         "r.bracketedPaste": true,
         "r.sessionWatcher": true,
         "editor.formatOnSave": false

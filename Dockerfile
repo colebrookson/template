@@ -31,3 +31,12 @@ RUN R -q -e "pak::meta_update()" \
 
 # copy the rest of the project
 COPY . /home/rproject
+
+# install arf (Adaptive R Frontend) + languageserver + httpgd
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
+    && curl --proto '=https' --tlsv1.2 -LsSf \
+    https://github.com/eitsupi/arf/releases/latest/download/arf-console-installer.sh | sh \
+    && ln -s /root/.cargo/bin/arf /usr/local/bin/arf \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN R -q -e "pak::pkg_install(c('languageserver', 'httpgd'))"
