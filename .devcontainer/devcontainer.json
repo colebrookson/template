@@ -1,0 +1,23 @@
+{
+  "name": "myproject",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "workspaceFolder": "/home/rproject",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "REditorSupport.r",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "r.rterm.linux": "/usr/local/bin/R",
+        "r.bracketedPaste": true,
+        "r.sessionWatcher": true,
+        "editor.formatOnSave": false
+      }
+    }
+  },
+  "remoteUser": "root"
+}

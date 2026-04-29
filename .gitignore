@@ -1,0 +1,19 @@
+# R session artifacts
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# output and cache directories (add to version control intentionally if needed)
+output/
+figures/
+cache/
+*.qs
+*.qs2
+
+# raw data (usually too large or sensitive to commit)
+data/raw/
+
+# OS noise
+.DS_Store
+Thumbs.db
