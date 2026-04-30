@@ -77,7 +77,7 @@ the first build; subsequent opens use the cache.
 
 ## 6. Verify the environment
 
-Inside the container terminal, check that your packages load cleanly:
+Inside the container terminal, check that your packages load cleanly (see section 7.1 on using R with `arf` below):
 
 ```r
 source("packages.R")
@@ -94,6 +94,10 @@ No errors means you're good to go.
 - Never develop directly on `main` — branch for every feature or analysis chunk
 - When you add a new package mid-project, follow the protocol in
   `docs/adding-dependencies.md`
+
+### 7.1 Use `arf`
+
+Because this is built to be used with VS Code, I hate the default R terminal, so I replaced it in the dependencies with [`arf`](https://github.com/eitsupi/arf) which has great documentation and doesn't break like `radian` does. Start coding by just writing `arf` in the bash terminal and now you have an open R terminal. 
 
 ---
 
