@@ -40,3 +40,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
 
 RUN R -q -e "pak::pkg_install(c('languageserver', 'httpgd'))"
+
+RUN mkdir -p /root/.config/arf
+COPY arf.toml /root/.config/arf/arf.toml
