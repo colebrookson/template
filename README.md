@@ -1,6 +1,6 @@
 # template repo 
 
-Please use (but do not steal) our code: [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Please use (but do not steal) my code: [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
  
 
 
