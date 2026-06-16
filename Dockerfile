@@ -27,7 +27,8 @@ WORKDIR /home/rproject
 COPY DESCRIPTION /home/rproject/
 
 RUN R -q -e "pak::meta_update()" \
-    && R -q -e "pak::local_install_deps('.', ask = FALSE, upgrade = FALSE)"
+    && R -q -e "pak::local_install_deps('.', ask = FALSE, upgrade = FALSE)" \
+    pip install --no-cache-dir snakemake==9.14.2
 
 # copy the rest of the project
 COPY . /home/rproject

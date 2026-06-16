@@ -19,5 +19,8 @@
       }
     }
   },
-  "remoteUser": "root"
+  "remoteUser": "root",
+  // These should let snakemake work properly
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace"
 }
