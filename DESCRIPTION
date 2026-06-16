@@ -15,7 +15,6 @@ Depends: R (>= 4.4)
 Imports:
     conflicted,
     here,
-    #sf,
     dplyr,
     ggplot2,
     tibble,
