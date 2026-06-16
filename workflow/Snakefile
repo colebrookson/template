@@ -1,0 +1,54 @@
+"""
+Main Snakefile
+
+Run from project root:
+    snakemake --cores all
+    snakemake -n # dry run
+    snakemake --dag | dot -Tsvg > docs/dag.svg
+
+Inputs:   resources/
+Outputs:  results/
+Config:   config/config.yaml
+Scripts:  workflow/scripts/
+Rules:    workflow/rules/*.smk
+"""
+
+from pathlib import Path
+
+configfile: "config/config.yaml"
+
+
+# ---------------------------------------------------------------------------
+# Helper: build a results path, keeping all outputs under results/
+# ---------------------------------------------------------------------------
+def result(*args):
+    return str(Path("results") / Path(*args))
+
+
+# ---------------------------------------------------------------------------
+# Wildcard constraints
+# ---------------------------------------------------------------------------
+wildcard_constraints:
+    dataset = r"[A-Za-z0-9_\-]+",
+
+
+# ---------------------------------------------------------------------------
+# Rule modules 
+# ---------------------------------------------------------------------------
+# these are just some example ones
+# include: "rules/process.smk"
+# include: "rules/analyze.smk"
+# include: "rules/report.smk"
+
+
+# ---------------------------------------------------------------------------
+# Default target — everything that should exist after a full pipeline run
+# ---------------------------------------------------------------------------
+rule all:
+    input:
+        # Add final things here as rules crystalize
+        # Examples:
+        #   expand(result("processed/{dataset}.rds"), dataset=config["datasets"]),
+        #   result("report/report.html"),
+        result("report/report.html"),
+    default_target: True
