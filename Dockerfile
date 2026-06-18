@@ -14,9 +14,10 @@ RUN echo "options(repos = c(CRAN = Sys.getenv('CRAN_MIRROR')))" \
 COPY sys_deps/sys_deps.sh /tmp/sys_deps.sh
 RUN bash /tmp/sys_deps.sh && rm /tmp/sys_deps.sh
 
-# git for committing from inside the container
+# git + ssh for committing and pushing from inside the container
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
+    openssh-client \
     && rm -rf /var/lib/apt/lists/*
 
 # ---------------------------------------------------------------------------
