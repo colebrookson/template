@@ -14,10 +14,28 @@ RUN echo "options(repos = c(CRAN = Sys.getenv('CRAN_MIRROR')))" \
 COPY sys_deps/sys_deps.sh /tmp/sys_deps.sh
 RUN bash /tmp/sys_deps.sh && rm /tmp/sys_deps.sh
 
-# git for committing from inside the container
+# git + ssh for committing and pushing from inside the container
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
+    openssh-client \
     && rm -rf /var/lib/apt/lists/*
+
+# ---------------------------------------------------------------------------
+# Python environment for Snakemake + future project scripts.
+# pyproject.toml is the Python parallel to DESCRIPTION: add new Python deps
+# there, not here. Installed into a dedicated venv rather than system Python
+# so it stays isolated and reproducible.
+# ---------------------------------------------------------------------------
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+COPY pyproject.toml /home/rproject/pyproject.toml
+RUN pip install --no-cache-dir /home/rproject
 
 # install pak
 RUN install2.r --error --skipinstalled pak

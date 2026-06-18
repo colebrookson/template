@@ -4,7 +4,6 @@
     "dockerfile": "../Dockerfile",
     "context": ".."
   },
-  "workspaceFolder": "/home/rproject",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -19,5 +18,13 @@
       }
     }
   },
-  "remoteUser": "root"
+  "remoteUser": "root",
+  // workspaceMount/workspaceFolder set to /workspace so Snakemake's relative
+  // paths (config/, resources/, results/) resolve the same as outside the container
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  // mount host SSH keys read-only so git push/pull over SSH works inside the container
+  "mounts": [
+    "source=${env:HOME}/.ssh,target=/root/.ssh,type=bind,readonly"
+  ]
 }
