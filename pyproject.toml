@@ -6,7 +6,7 @@ requires-python = ">=3.11"
 dependencies = [
     "snakemake==9.14.2",
     "ipykernel",
-    # add future Python deps here, e.g.:
+    # add project-specific Python deps here, e.g.:
     # "pandas",
     # "numpy",
 ]
