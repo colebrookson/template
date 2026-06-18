@@ -35,10 +35,8 @@ processing:
   type_1:
     # these are just examples!
     drop_na: true
-    resample_freq: "monthly"
   type_2:
     drop_na: false
-    crs: "EPSG:4326"
 
 # ---------------------------------------------------------------------------
 # Model parameters - one can imagine what these do

@@ -1,0 +1,23 @@
+datasets:
+  climate:
+    test_climate:
+      path: test/resources/climate/test_climate.csv
+      date_col: date
+  surveillance:
+    test_surveillance:
+      path: test/resources/surveillance/test_surveillance.csv
+      date_col: date
+
+processing:
+  climate:
+    drop_na: true
+    resample_freq: "monthly"
+  surveillance:
+    drop_na: false
+    reporting_lag_days: 7
+
+model:
+  iter_warmup: 50      # just enough to check it runs
+  iter_sampling: 100
+  chains: 1
+  seed: 42
