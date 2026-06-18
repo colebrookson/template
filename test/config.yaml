@@ -1,20 +1,19 @@
 datasets:
   climate:
     test_climate:
-      path: test/resources/climate/test_climate.csv
+      path: test/resources//type_1/test_a.csv
       date_col: date
   surveillance:
     test_surveillance:
-      path: test/resources/surveillance/test_surveillance.csv
+      path: test/resources/type_2/test_b.csv
       date_col: date
 
 processing:
-  climate:
+  type_1:
     drop_na: true
-    resample_freq: "monthly"
-  surveillance:
+  type_2:
     drop_na: false
-    reporting_lag_days: 7
+
 
 model:
   iter_warmup: 50      # just enough to check it runs

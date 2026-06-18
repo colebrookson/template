@@ -19,6 +19,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
+# ---------------------------------------------------------------------------
+# Python environment for Snakemake + future project scripts.
+# pyproject.toml is the Python parallel to DESCRIPTION: add new Python deps
+# there, not here. Installed into a dedicated venv rather than system Python
+# so it stays isolated and reproducible.
+# ---------------------------------------------------------------------------
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+COPY pyproject.toml /home/rproject/pyproject.toml
+RUN pip install --no-cache-dir /home/rproject
+
 # install pak
 RUN install2.r --error --skipinstalled pak
 
@@ -27,8 +44,7 @@ WORKDIR /home/rproject
 COPY DESCRIPTION /home/rproject/
 
 RUN R -q -e "pak::meta_update()" \
-    && R -q -e "pak::local_install_deps('.', ask = FALSE, upgrade = FALSE)" \
-    pip install --no-cache-dir snakemake==9.14.2
+    && R -q -e "pak::local_install_deps('.', ask = FALSE, upgrade = FALSE)"
 
 # copy the rest of the project
 COPY . /home/rproject
